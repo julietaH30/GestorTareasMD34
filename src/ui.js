@@ -1,26 +1,23 @@
-import{ getTasks } from "./task";
+import { getTasks } from "./task";
 
-//funcion para mostrar al usuario lo que esta detras del programa las tareas
+//funcion para mostrarle al usuario las tareas y lo que hacemos con ellas//
 export const renderTasks = () => {
-    const taskList = document.getElementById("task-list");
-    taskList.innerHTML ="";
+    const TaskList = document.getElementById("task-list");
+    TaskList.innerHTML = "";
     const tasks = getTasks();
-    tasks.forEach((task)=> {
+    tasks.forEach((task) => {
         const li = document.createElement("li");
-        li.setAttribute("data-id", task.id);
+        li.setAttribute("data-id", task.id)
 
-        //añadir clase solo a las tareas completadas
-        if(task.completed === true) {
+        // añadir clase solo si la tarea esta completada //
+        if (task.completed === true) {
             li.classList.add("completed");
         }
-
         li.innerHTML = `
-        ${ task.tex }
-        <button class="delete"> Eliminar </button> 
-        <button class="toggle">${ task.completed === true ? "Deshaser" : "Completar" } </button>
+        ${task.text}
+        <button class= "delete"> Eliminar </button> 
+        <button class ="toggle"> ${task.completed === true? "Deshacer" : "completar" }  </button>
         `;
-
-        taskList.appendChild(li);
-    
-});
+        TaskList.appendChild(li);
+    });
 };
